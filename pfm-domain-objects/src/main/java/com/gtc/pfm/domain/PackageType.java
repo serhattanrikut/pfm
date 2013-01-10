@@ -3,15 +3,24 @@
  */
 package com.gtc.pfm.domain;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 /**
  * 
  * @author stanriku
  *
  */
-public class PackageType implements PfmDomainObjectInterface{
+@Document
+public class PackageType extends PfmMongoDomainObject implements PfmDomainObjectInterface{
 
+    public static final String typeField = "type";
+    public static final String nameFiled = "name";
+    
+    @Field(value=typeField)
     private int type;
     
+    @Field(value=nameFiled)
     private String name;
     
     /**
@@ -80,5 +89,44 @@ public class PackageType implements PfmDomainObjectInterface{
         builder.append("]");
         return builder.toString();
     }
-    
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + type;
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof PackageType)) {
+            return false;
+        }
+        PackageType other = (PackageType) obj;
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (type != other.type) {
+            return false;
+        }
+        return true;
+    }
 }

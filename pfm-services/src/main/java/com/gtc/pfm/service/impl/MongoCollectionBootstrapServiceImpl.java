@@ -201,7 +201,7 @@ public class MongoCollectionBootstrapServiceImpl extends PfmMongoRepositoryBase 
                 return;
             
             serhat = new User("serhattanrikut@gmail.com", "serhattanrikut", "serhattanrikut",
-                    "serhat", "tanrikut", "serhat", "serhat", 5, 5, "M", KADIKOY.getName(), "+905306035113", "", 5, 
+                    "serhat", "tanrikut", "serhat", "serhat", 5, 5, "M", KADIKOY.getName(), "+905306035113", "", 5, provideRoles(), 
                     Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
             
             userService.creaetUser(serhat);
@@ -209,7 +209,7 @@ public class MongoCollectionBootstrapServiceImpl extends PfmMongoRepositoryBase 
             logger.info("user created:"+serhat);
             
             vedat = new User("vedkoo@gmail.com", "vedatozkan", "vedatozkan", "vedat", "ozkan",
-                    "vedat", "vedat", 5, 5, "M", KADIKOY.getName(), "+905306035114", "", 5);
+                    "vedat", "vedat", 5, 5, "M", KADIKOY.getName(), "+905306035114", "", 5,provideRoles());
             vedat.setCreated(Calendar.getInstance().getTime());
             vedat.setUpdated(Calendar.getInstance().getTime());
             userService.creaetUser(vedat);
@@ -223,6 +223,12 @@ public class MongoCollectionBootstrapServiceImpl extends PfmMongoRepositoryBase 
        
     }
 
+    public List<String> provideRoles() {
+        List<String> roles = new ArrayList<String>();
+        roles.add("user");
+        return roles;
+    }
+    
     public void populateVenues() {
         try {
             

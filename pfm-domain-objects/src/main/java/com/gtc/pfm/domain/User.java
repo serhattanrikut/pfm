@@ -8,9 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
+ * User class holding all required properties including roles.
  * 
  * @author stanriku
  */
@@ -36,6 +38,8 @@ public class User extends PfmMongoDomainObject{
     private String phone;
     private String photo;
     private int tipCount;
+    
+    private List<String> roles;
 
     /**
      * default constructor
@@ -62,7 +66,7 @@ public class User extends PfmMongoDomainObject{
      */
     public User(String email, String facebook, String twitter, String firstname, String lastname,
             String username, String password, int followerCount, int friendCount, String gender,
-            String hometown, String phone, String photo, int tipCount) {
+            String hometown, String phone, String photo, int tipCount, List<String> roles) {
         super();
         this.email = email;
         this.facebook = facebook;
@@ -78,11 +82,12 @@ public class User extends PfmMongoDomainObject{
         this.phone = phone;
         this.photo = photo;
         this.tipCount = tipCount;
+        this.roles = roles;
     }
     
     public User(String email, String facebook, String twitter, String firstname, String lastname,
             String username, String password, int followerCount, int friendCount, String gender,
-            String hometown, String phone, String photo, int tipCount, Date created, Date updated) {
+            String hometown, String phone, String photo, int tipCount, List<String> roles, Date created, Date updated) {
         super();
         this.email = email;
         this.facebook = facebook;
@@ -100,10 +105,8 @@ public class User extends PfmMongoDomainObject{
         this.tipCount = tipCount;
         this.created = created;
         this.updated = updated;
+        this.roles = roles;
     }
-
-
-
 
     /**
      * @return the email
@@ -300,6 +303,20 @@ public class User extends PfmMongoDomainObject{
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    /**
+     * @return the roles
+     */
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    /**
+     * @param roles the roles to set
+     */
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     /**
      * 
@@ -313,47 +330,217 @@ public class User extends PfmMongoDomainObject{
         return userRef;
         
     }
-    
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((facebook == null) ? 0 : facebook.hashCode());
+        result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+        result = prime * result + followerCount;
+        result = prime * result + friendCount;
+        result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+        result = prime * result + ((hometown == null) ? 0 : hometown.hashCode());
+        result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+        result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+        result = prime * result + ((photo == null) ? 0 : photo.hashCode());
+        result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+        result = prime * result + tipCount;
+        result = prime * result + ((twitter == null) ? 0 : twitter.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        User other = (User) obj;
+        if (email == null) {
+            if (other.email != null) {
+                return false;
+            }
+        } else if (!email.equals(other.email)) {
+            return false;
+        }
+        if (facebook == null) {
+            if (other.facebook != null) {
+                return false;
+            }
+        } else if (!facebook.equals(other.facebook)) {
+            return false;
+        }
+        if (firstname == null) {
+            if (other.firstname != null) {
+                return false;
+            }
+        } else if (!firstname.equals(other.firstname)) {
+            return false;
+        }
+        if (followerCount != other.followerCount) {
+            return false;
+        }
+        if (friendCount != other.friendCount) {
+            return false;
+        }
+        if (gender == null) {
+            if (other.gender != null) {
+                return false;
+            }
+        } else if (!gender.equals(other.gender)) {
+            return false;
+        }
+        if (hometown == null) {
+            if (other.hometown != null) {
+                return false;
+            }
+        } else if (!hometown.equals(other.hometown)) {
+            return false;
+        }
+        if (lastname == null) {
+            if (other.lastname != null) {
+                return false;
+            }
+        } else if (!lastname.equals(other.lastname)) {
+            return false;
+        }
+        if (password == null) {
+            if (other.password != null) {
+                return false;
+            }
+        } else if (!password.equals(other.password)) {
+            return false;
+        }
+        if (phone == null) {
+            if (other.phone != null) {
+                return false;
+            }
+        } else if (!phone.equals(other.phone)) {
+            return false;
+        }
+        if (photo == null) {
+            if (other.photo != null) {
+                return false;
+            }
+        } else if (!photo.equals(other.photo)) {
+            return false;
+        }
+        if (roles == null) {
+            if (other.roles != null) {
+                return false;
+            }
+        } else if (!roles.equals(other.roles)) {
+            return false;
+        }
+        if (tipCount != other.tipCount) {
+            return false;
+        }
+        if (twitter == null) {
+            if (other.twitter != null) {
+                return false;
+            }
+        } else if (!twitter.equals(other.twitter)) {
+            return false;
+        }
+        if (username == null) {
+            if (other.username != null) {
+                return false;
+            }
+        } else if (!username.equals(other.username)) {
+            return false;
+        }
+        return true;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("User [email=");
-        builder.append(email);
-        builder.append(", facebook=");
-        builder.append(facebook);
-        builder.append(", twitter=");
-        builder.append(twitter);
-        builder.append(", firstname=");
-        builder.append(firstname);
-        builder.append(", lastname=");
-        builder.append(lastname);
-        builder.append(", username=");
-        builder.append(username);
-        builder.append(", password=");
-        builder.append(password);
-        builder.append(", followerCount=");
+        builder.append("User [");
+        if (email != null) {
+            builder.append("email=");
+            builder.append(email);
+            builder.append(", ");
+        }
+        if (facebook != null) {
+            builder.append("facebook=");
+            builder.append(facebook);
+            builder.append(", ");
+        }
+        if (twitter != null) {
+            builder.append("twitter=");
+            builder.append(twitter);
+            builder.append(", ");
+        }
+        if (firstname != null) {
+            builder.append("firstname=");
+            builder.append(firstname);
+            builder.append(", ");
+        }
+        if (lastname != null) {
+            builder.append("lastname=");
+            builder.append(lastname);
+            builder.append(", ");
+        }
+        if (username != null) {
+            builder.append("username=");
+            builder.append(username);
+            builder.append(", ");
+        }
+        if (password != null) {
+            builder.append("password=");
+            builder.append(password);
+            builder.append(", ");
+        }
+        builder.append("followerCount=");
         builder.append(followerCount);
         builder.append(", friendCount=");
         builder.append(friendCount);
-        builder.append(", gender=");
-        builder.append(gender);
-        builder.append(", hometown=");
-        builder.append(hometown);
-        builder.append(", phone=");
-        builder.append(phone);
-        builder.append(", photo=");
-        builder.append(photo);
-        builder.append(", tipCount=");
+        builder.append(", ");
+        if (gender != null) {
+            builder.append("gender=");
+            builder.append(gender);
+            builder.append(", ");
+        }
+        if (hometown != null) {
+            builder.append("hometown=");
+            builder.append(hometown);
+            builder.append(", ");
+        }
+        if (phone != null) {
+            builder.append("phone=");
+            builder.append(phone);
+            builder.append(", ");
+        }
+        if (photo != null) {
+            builder.append("photo=");
+            builder.append(photo);
+            builder.append(", ");
+        }
+        builder.append("tipCount=");
         builder.append(tipCount);
-        builder.append(", id=");
-        builder.append(id);
-        builder.append(", created=");
-        builder.append(created);
-        builder.append(", updated=");
-        builder.append(updated);
+        builder.append(", ");
+        if (roles != null) {
+            builder.append("roles=");
+            builder.append(roles);
+        }
         builder.append("]");
         return builder.toString();
     }

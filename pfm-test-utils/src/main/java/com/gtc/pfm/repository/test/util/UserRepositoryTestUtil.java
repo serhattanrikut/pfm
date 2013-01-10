@@ -9,6 +9,7 @@ import com.gtc.pfm.domain.UserReference;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * provides mock implementations and util methods in order to mock {@link User} 
@@ -43,12 +44,13 @@ public class UserRepositoryTestUtil {
      * @param photo
      * @param gender
      * @param hometown
+     * @param roles
      * @return {@link User}
      */
     public User createUserMock(String username, String password, int tipCount, String firstname, String lastname, int friendCount, String twitter, 
-            String email, String phone, int followerCount, String facebook, String photo, String gender, String hometown) {
+            String email, String phone, int followerCount, String facebook, String photo, String gender, String hometown,List<String> roles) {
        
-        User user = new User(email, facebook, twitter, firstname, lastname, username, password, followerCount, friendCount, gender, hometown, phone, photo, tipCount);
+        User user = new User(email, facebook, twitter, firstname, lastname, username, password, followerCount, friendCount, gender, hometown, phone, photo, tipCount,roles);
         
         return user;
     }
@@ -71,16 +73,17 @@ public class UserRepositoryTestUtil {
      * @param photo
      * @param gender
      * @param hometown
+     * @param roles
      * @param created
      * @param updated
      * 
      * @return {@link User}
      */
     public User createUserMock(String username, String password, int tipCount, String firstname, String lastname, int friendCount, String twitter, 
-            String email, String phone, int followerCount, String facebook, String photo, String gender, String hometown, Date created, Date updated) {
+            String email, String phone, int followerCount, String facebook, String photo, String gender, String hometown, List<String> roles, Date created, Date updated) {
         
         User user = new User(email, facebook, twitter, firstname, lastname, username, password, followerCount, 
-                friendCount, gender, hometown, phone, photo, tipCount, created, updated);
+                friendCount, gender, hometown, phone, photo, tipCount, roles, created, updated);
         
         return user;
     }
@@ -104,16 +107,17 @@ public class UserRepositoryTestUtil {
      * @param photo
      * @param gender
      * @param hometown
+     * @param roles
      * @param created
      * @param updated
      * 
      * @return {@link User}
      */
     public User createUserMock(String id, String username, String password, int tipCount, String firstname, String lastname, int friendCount, String twitter, 
-            String email, String phone, int followerCount, String facebook, String photo, String gender, String hometown, Date created, Date updated) {
+            String email, String phone, int followerCount, String facebook, String photo, String gender, String hometown, List<String> roles, Date created, Date updated) {
         
         User user = createUserMock(username, password, tipCount, firstname, lastname, friendCount, 
-                twitter, email, phone, followerCount, facebook, photo, gender, hometown, created, updated);
+                twitter, email, phone, followerCount, facebook, photo, gender, hometown, roles,created, updated);
         
         user.setId(id);
         
