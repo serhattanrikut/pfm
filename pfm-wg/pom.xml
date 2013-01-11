@@ -8,7 +8,8 @@
   <artifactId>pfm-wg</artifactId>
   <packaging>war</packaging>
   <name>pfg-wg</name>
-  <description>pfm walled garden handes REST,WS requests</description>
+  <description>pfm walled garden handles REST,WS requests</description>
+  
   <dependencies>
     <dependency>
 		 <groupId>org.springframework.data</groupId>

@@ -5,6 +5,9 @@ target/
 *.pydevproject
 .project
 .metadata
+target/
+.idea/
+*.iml
 bin/
 tmp/
 *.tmp
